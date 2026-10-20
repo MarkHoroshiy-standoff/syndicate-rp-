@@ -11,9 +11,9 @@
         :root {
             --bg-main: #0c0a12;
             --bg-card: #15121e;
-            --bg-glass: rgba(21, 18, 30, 0.75);
-            --border-color: rgba(138, 43, 226, 0.2);
-            --border-hover: rgba(138, 43, 226, 0.5);
+            --bg-glass: rgba(21, 18, 30, 0.85);
+            --border-color: rgba(138, 43, 226, 0.25);
+            --border-hover: rgba(245, 130, 32, 0.5);
             --text-main: #ffffff;
             --text-muted: #9a94a8;
             --accent-purple: #8a2be2;
@@ -30,9 +30,9 @@
         [data-theme="light"] {
             --bg-main: #f4f2f8;
             --bg-card: #ffffff;
-            --bg-glass: rgba(255, 255, 255, 0.85);
+            --bg-glass: rgba(255, 255, 255, 0.9);
             --border-color: rgba(138, 43, 226, 0.15);
-            --border-hover: rgba(138, 43, 226, 0.4);
+            --border-hover: rgba(245, 130, 32, 0.5);
             --text-main: #130f1d;
             --text-muted: #6b657b;
             --badge-warn-bg: rgba(245, 130, 32, 0.1);
@@ -56,17 +56,16 @@
             overflow-x: hidden;
         }
 
-        /* Ambient Glow Effect */
         .ambient-glow {
             position: fixed;
-            width: 350px;
-            height: 350px;
+            width: 400px;
+            height: 400px;
             background: radial-gradient(circle, var(--accent-purple) 0%, rgba(0,0,0,0) 70%);
-            top: -100px;
+            top: -120px;
             left: 50%;
             transform: translateX(-50%);
-            opacity: 0.25;
-            filter: blur(80px);
+            opacity: 0.2;
+            filter: blur(90px);
             pointer-events: none;
             z-index: 0;
         }
@@ -79,7 +78,7 @@
             -webkit-backdrop-filter: blur(16px);
             background: var(--bg-glass);
             border-bottom: 1px solid var(--border-color);
-            padding: 14px 20px;
+            padding: 12px 20px;
         }
 
         .header-container {
@@ -99,16 +98,16 @@
         }
 
         .brand-logo-box {
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             background: #000;
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--accent-orange);
             overflow: hidden;
+            box-shadow: 0 0 10px rgba(245, 130, 32, 0.3);
         }
 
         .brand-logo-img {
@@ -118,7 +117,7 @@
         }
 
         .brand-text h1 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 800;
             letter-spacing: 0.5px;
             background: linear-gradient(135deg, #fff 40%, var(--accent-purple));
@@ -128,16 +127,36 @@
 
         .brand-text span {
             font-size: 0.65rem;
-            color: var(--text-muted);
+            color: var(--accent-orange);
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .controls {
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tg-btn {
+            background: linear-gradient(135deg, #0088cc, #00a0e9);
+            color: #fff;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+        }
+
+        .tg-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0, 136, 204, 0.5);
         }
 
         .pill-btn {
@@ -191,51 +210,66 @@
         }
 
         .hero-banner {
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.12), rgba(245, 130, 32, 0.05));
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.15), rgba(245, 130, 32, 0.08));
             border: 1px solid var(--border-color);
             border-radius: 24px;
-            padding: 28px 24px;
-            margin-bottom: 24px;
+            padding: 24px;
+            margin-bottom: 20px;
             box-shadow: 0 12px 32px var(--shadow-purple);
         }
 
         .hero-title {
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             line-height: 1.2;
         }
 
         .hero-subtitle {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             line-height: 1.5;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
-        .stats-row {
+        .contact-box {
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 12px 16px;
             display: flex;
-            gap: 16px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 16px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .stat-item h3 {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--accent-orange);
-        }
-
-        .stat-item p {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
             font-weight: 600;
+        }
+
+        .admin-link {
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-weight: 800;
+            background: rgba(245, 130, 32, 0.15);
+            padding: 4px 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(245, 130, 32, 0.3);
+        }
+
+        .admin-link:hover {
+            background: var(--accent-orange);
+            color: #fff;
         }
 
         .search-box {
             position: relative;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .search-box input {
@@ -280,14 +314,11 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             color: var(--text-muted);
-            padding: 10px 18px;
+            padding: 10px 16px;
             border-radius: 14px;
             font-size: 0.85rem;
             font-weight: 700;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .tab-btn.active {
@@ -323,13 +354,14 @@
             align-items: center;
             justify-content: space-between;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .rule-num {
             font-size: 0.8rem;
             font-weight: 800;
-            color: var(--accent-purple);
-            background: rgba(138, 43, 226, 0.1);
+            color: var(--accent-orange);
+            background: rgba(245, 130, 32, 0.1);
             padding: 2px 8px;
             border-radius: 8px;
         }
@@ -364,7 +396,7 @@
         .rule-desc {
             font-size: 0.85rem;
             color: var(--text-muted);
-            line-height: 1.4;
+            line-height: 1.45;
         }
     </style>
 </head>
@@ -376,7 +408,18 @@
         <div class="header-container">
             <div class="brand">
                 <div class="brand-logo-box">
-                    <img src="https://raw.githubusercontent.com/MarkHoroshiy-standoff/syndicate-rp-/main/image_33.png" class="brand-logo-img" alt="Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\' fill=\'%238a2be2\'><rect width=\'100\' height=\'100\' fill=\'%230f0f14\'/><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'36\' font-weight=\'bold\'>SR</text></svg>'">
+                    <svg viewBox="0 0 100 100" style="width:100%; height:100%;">
+                        <rect width="100" height="100" fill="#121018"/>
+                        <rect x="15" y="15" width="20" height="6" fill="#ffffff"/>
+                        <rect x="40" y="15" width="20" height="6" fill="#ffffff"/>
+                        <rect x="65" y="15" width="20" height="6" fill="#ffffff"/>
+                        <text x="50%" y="48%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-size="32" font-weight="900" font-family="sans-serif">SR</text>
+                        <text x="50%" y="64%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="800" font-family="sans-serif" letter-spacing="1">SYNDICATE RP</text>
+                        <path d="M15 75 L30 75 L20 88 L15 88 Z" fill="#f58220"/>
+                        <path d="M35 75 L50 75 L40 88 L25 88 Z" fill="#f58220"/>
+                        <path d="M55 75 L70 75 L60 88 L45 88 Z" fill="#f58220"/>
+                        <path d="M75 75 L85 75 L85 88 L65 88 Z" fill="#f58220"/>
+                    </svg>
                 </div>
                 <div class="brand-text">
                     <h1>SYNDICATE RP</h1>
@@ -385,6 +428,10 @@
             </div>
 
             <div class="controls">
+                <a href="https://t.me/SyndicateRPEH" target="_blank" class="tg-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                    Telegram
+                </a>
                 <div class="lang-switch">
                     <button class="lang-btn active" id="btn-ru" onclick="setLang('ru')">RU</button>
                     <button class="lang-btn" id="btn-ua" onclick="setLang('ua')">UA</button>
@@ -399,20 +446,13 @@
     <main class="main-content">
         <div class="hero-banner">
             <div class="hero-title" id="hero-title">Честная игра. Порядок. Репутация.</div>
-            <div class="hero-subtitle" id="hero-sub">Правила сервера созданы для комфортной и справедливой роливой игры. Они обеспечивают качественную атмосферу и стабильный процесс без хаоса.</div>
-            <div class="stats-row">
-                <div class="stat-item">
-                    <h3>4</h3>
-                    <p id="stat-1">РАЗДЕЛА</p>
+            <div class="hero-subtitle" id="hero-sub">Правила проекта Syndicate RP. Система наказаний: получение 2 предупреждений (варнов) приводит к автоматическому бану аккаунта!</div>
+            
+            <div class="contact-box">
+                <div class="contact-info">
+                    💬 Есть вопросы по регламенту или игре?
                 </div>
-                <div class="stat-item">
-                    <h3>24/7</h3>
-                    <p id="stat-2">ДОСТУПНО</p>
-                </div>
-                <div class="stat-item">
-                    <h3>100%</h3>
-                    <p id="stat-3">ДЛЯ ВСЕХ</p>
-                </div>
+                <a href="https://t.me/Syndicateadm" target="_blank" class="admin-link">Написать Гл. Админу (@Syndicateadm)</a>
             </div>
         </div>
 
@@ -423,15 +463,13 @@
 
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="switchTab('all', this)" id="tab-all">Все правила</button>
-            <button class="tab-btn" onclick="switchTab('p1', this)" id="tab-p1">1. Игровой процесс</button>
-            <button class="tab-btn" onclick="switchTab('p2', this)" id="tab-p2">2. Регламент полиции</button>
-            <button class="tab-btn" onclick="switchTab('p3', this)" id="tab-p3">3. Регламент медиков</button>
-            <button class="tab-btn" onclick="switchTab('p4', this)" id="tab-p4">4. Суд и Общие нормы</button>
+            <button class="tab-btn" onclick="switchTab('p1', this)" id="tab-p1">1. Базовые нарушения</button>
+            <button class="tab-btn" onclick="switchTab('p2', this)" id="tab-p2">2. Чат и Голос</button>
+            <button class="tab-btn" onclick="switchTab('p3', this)" id="tab-p3">3. Регламент гос. фракций</button>
+            <button class="tab-btn" onclick="switchTab('p4', this)" id="tab-p4">4. Криминал и Зеленые зоны</button>
         </div>
 
-        <div class="rules-section" id="rules-container">
-            <!-- Rules dynamically rendered -->
-        </div>
+        <div class="rules-section" id="rules-container"></div>
     </main>
 
     <script>
@@ -439,89 +477,81 @@
             ru: {
                 subtitle: "ПРАВИЛА СЕРВЕРА",
                 heroTitle: "Честная игра. Порядок. Репутация.",
-                heroSub: "Правила сервера созданы для комфортной и справедливой ролевой игры. Они обеспечивают качественную атмосферу и стабильный процесс без хаоса.",
-                stat1: "РАЗДЕЛА",
-                stat2: "ДОСТУПНО",
-                stat3: "ДЛЯ ВСЕХ",
-                searchPlaceholder: "Поиск правила, бана или наказания...",
+                heroSub: "Свод правил Syndicate RP. Систематические нарушения караяются: 1 варн ➔ 2 варн ➔ Бан на 3 дня (или бессрочный бан за тягчайшие проступки).",
+                searchPlaceholder: "Поиск правила, варна или бана...",
                 tabs: {
                     all: "Все правила",
-                    p1: "1. Игровой процесс",
-                    p2: "2. Регламент полиции",
-                    p3: "3. Регламент медиков",
-                    p4: "4. Суд и Общие нормы"
+                    p1: "1. Базовые нарушения",
+                    p2: "2. Чат и Голос",
+                    p3: "3. Регламент гос. фракций",
+                    p4: "4. Криминал и Зеленые зоны"
                 },
                 items: [
-                    { cat: "p1", num: "1.1", title: "DM (DeathMatch)", desc: "Убийство или нанесение урона без весомой RP причины.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дня", type: "ban" },
-                    { cat: "p1", num: "1.2", title: "DB (DriveBy)", desc: "Намеренное убийство или таран транспортом.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дня", type: "ban" },
-                    { cat: "p1", num: "1.3", title: "NonRP Driving / ДТП", desc: "Намеренные аварии, ездовые провокации, езда по тротуарам.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дня", type: "ban" },
-                    { cat: "p1", num: "1.4", title: "RK (Revenge Kill)", desc: "Месть или возвращение на место смерти после гибели.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дня", type: "ban" },
-                    { cat: "p1", num: "1.5", title: "PG (PowerGaming)", desc: "Преувеличение возможностей своего персонажа («супергеройство»).", badge: "1-й раз — Варн | 2-й раз — Бан 3 дня", type: "ban" },
-                    { cat: "p1", num: "1.6", title: "FearRP", desc: "Отсутствие страха за жизнь своего персонажа под угрозой.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дня", type: "ban" },
-                    { cat: "p1", num: "1.7", title: "Оскорбление семьи / Родных", desc: "Любые оскорбления родственников в IC или OOC чатах.", badge: "Наказание: Бан до 30 дней", type: "ban" },
-                    { cat: "p1", num: "1.8", title: "Розжиг конфликтов / OOC в IC", desc: "Перенос ООС конфликтов в игровой чат, оскорбления в OOC.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дня", type: "warn" },
-                    { cat: "p1", num: "1.9", title: "Массовый DM (3+ человека)", desc: "Массовое убийство без причины нескольких игроков.", badge: "Бан 7 дней | Повторно — Перманент", type: "ban" },
-                    { cat: "p1", num: "1.10", title: "Багоюз / Уход от RP", desc: "Использование багов игры, выход с сервера во время RP ситуации.", badge: "1-й раз — Бан 1 день | 2-й раз — Бан 3 дня", type: "ban" },
-                    { cat: "p1", num: "1.11", title: "Читы / Софт", desc: "Использование любых сторонних программ и читов.", badge: "Наказание: Перманентный бан", type: "ban" },
+                    { cat: "p1", num: "1.1", title: "DM (DeathMatch)", desc: "Убийство или нанесение урона игрокам без RP причины.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дня", type: "warn" },
+                    { cat: "p1", num: "1.2", title: "DB (DriveBy)", desc: "Намеренное убийство, урон или регулярный таран транспортом.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дня", type: "warn" },
+                    { cat: "p1", num: "1.3", title: "NonRP Driving / Таран", desc: "Намеренные аварии, срезы, езда по тротуарам и провокации на ТС.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дня", type: "warn" },
+                    { cat: "p1", num: "1.4", title: "RK (Revenge Kill)", desc: "Месть или незамедлительное возвращение на место смерти.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дня", type: "warn" },
+                    { cat: "p1", num: "1.5", title: "PG (PowerGaming)", desc: "Преувеличение возможностей своего персонажа («супергеройство»).", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дня", type: "warn" },
+                    { cat: "p1", num: "1.6", title: "FearRP", desc: "Отсутствие страха за жизнь персонажа под дулом оружия.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дня", type: "warn" },
+                    { cat: "p1", num: "1.7", title: "Уход от RP / Багоюз", desc: "Выход с сервера при задержании/RP или использование багов.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дня", type: "warn" },
+                    { cat: "p1", num: "1.8", title: "Массовый DM (3+ чел)", desc: "Убийство или расстрел толпы без весомого RP повода.", badge: "Наказание: Бан от 7 дней", type: "ban" },
+                    { cat: "p1", num: "1.9", title: "Читы и стороннее ПО", desc: "Использование софта, дающего преимущество над игроками.", badge: "Наказание: Перманентный бан", type: "ban" },
 
-                    { cat: "p2", num: "2.1", title: "Правило Миранды", desc: "Обязательное зачитывание прав при задержании (используйте биндеры).", badge: "1-й раз — Варн | 2-й раз — Бан 3 дня", type: "warn" },
-                    { cat: "p2", num: "2.2", title: "Доказательства (Откат)", desc: "Любой арест требует фиксации. При отсутствии отката и свидетелей — Суд оправдывает.", badge: "Оправдание через Суд", type: "warn" },
-                    { cat: "p2", num: "2.3", title: "Применение спецсредств", desc: "Тазер и дубинка используются строго при прямой угрозе или сопротивлении.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дня", type: "warn" },
-                    { cat: "p2", num: "2.4", title: "Превышение полномочий", desc: "Обыск или арест без законных оснований и причин.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дня", type: "warn" },
-                    { cat: "p2", num: "2.5", title: "Поведение полицейского", desc: "Соблюдение вежливости, нейтралитета и презумпции невиновности. Провокации запрещены.", badge: "Наказание: Варн", type: "warn" },
+                    { cat: "p2", num: "2.1", title: "Оскорбление родных", desc: "Запрещены любые прямые и косвенные упоминания родных.", badge: "Наказание: Бан от 7 до 30 дней", type: "ban" },
+                    { cat: "p2", num: "2.2", title: "OOC в IC / MG (MetaGaming)", desc: "Перенос информации из реального мира в игровой процесс.", badge: "1-й Варн ➔ 2-й Варн ➔ Мут 60 мин", type: "warn" },
+                    { cat: "p2", num: "2.3", title: "Розжиг и Политика", desc: "Провокации, политические споры и нац. розжиг в чатах.", badge: "Наказание: Бан 7 дней", type: "ban" },
+                    { cat: "p2", num: "2.4", title: "Шумы в Войс / Музыка", desc: "Включение посторонних звуков, музыки, крики в микрофон.", badge: "1-й Варн ➔ Мут 30-60 минут", type: "warn" },
 
-                    { cat: "p3", num: "3.1", title: "Обязанность выезда на вызов", desc: "Медик обязан оперативно выезжать на поступающие вызовы.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дня", type: "warn" },
-                    { cat: "p3", num: "3.2", title: "NonRP Лечение", desc: "Запрещено лечение в прыжке, на бегу или во время перестрелки.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дня", type: "warn" },
-                    { cat: "p3", num: "3.3", title: "Блат и отказ в помощи", desc: "Предвзятое отношение или отказ от оказания помощи игроку.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дня", type: "warn" },
-                    { cat: "p3", num: "3.4", title: "Использование спецсигналов", desc: "Проблесковые маячки включаются только при экстренном вызове.", badge: "1-й раз — Предупреждение | 2-й — Варн", type: "warn" },
+                    { cat: "p3", num: "3.1", title: "Правило Миранды (Полиция)", desc: "Задержание без зачитки прав задержанному гражданину.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дня", type: "warn" },
+                    { cat: "p3", num: "3.2", title: "Откаты арестов (Полиция)", desc: "Аресты требуют видеофиксации. Нет видео — суд оправдывает.", badge: "Оправдание через Суд", type: "warn" },
+                    { cat: "p3", num: "3.3", title: "Применение спецсредств", desc: "Использование тайзера или дубинки без сопротивления.", badge: "1-й Варн ➔ 2-й Варн ➔ Выговор", type: "warn" },
+                    { cat: "p3", num: "3.4", title: "NonRP Лечение (Медики)", desc: "Лечение на бегу, в бою или без использования медицинских отыгровок.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дня", type: "warn" },
+                    { cat: "p3", num: "3.5", title: "Блат / Продажа рангов", desc: "Предвзятость, продажа должностей или инвентаря фракций.", badge: "Наказание: Бан 30 дней + ЧС", type: "ban" },
 
-                    { cat: "p4", num: "4.1", title: "Отыгровки /me, /do, /try", desc: "Обязательное использование команд отыгровки при угоне авто и обысках.", badge: "Наказание: Варн", type: "warn" },
-                    { cat: "p4", num: "4.2", title: "Зеленая Зона (GreenZone)", desc: "Запрет на любой криминал в Мэрии, больницах и участках.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дня", type: "ban" },
-                    { cat: "p4", num: "4.3", title: "Судебный порядок", desc: "Право на адвоката. Дача заведомо ложных показаний в суде строго карается.", badge: "Ложные показания: Бан 7 дней", type: "ban" }
+                    { cat: "p4", num: "4.1", title: "Зеленая Зона (GreenZone)", desc: "Запрещены любые драки, стрельба и грабежи в мэрии, ДБ и МВД.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дня", type: "ban" },
+                    { cat: "p4", num: "4.2", title: "Отыгровки /me, /do, /try", desc: "Обязательный отыгрыш при обысках, угнанных авто и грабеже.", badge: "1-й Варн ➔ 2-й Варн ➔ Деморган", type: "warn" },
+                    { cat: "p4", num: "4.3", title: "Ограбления и Похищения", desc: "Запрещено ограбление без маски или в одиночку без фракции.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дня", type: "warn" },
+                    { cat: "p4", num: "4.4", title: "Ложные показания в Суде", desc: "Обман суда и прокуратуры во время официальных разбирательств.", badge: "Наказание: Бан на 7 дней", type: "ban" }
                 ]
             },
             ua: {
                 subtitle: "ПРАВИЛА СЕРВЕРА",
                 heroTitle: "Чесна гра. Порядок. Репутація.",
-                heroSub: "Правила сервера створені для комфортної та справедливої рольової гри. Вони забезпечують якісну атмосферу та стабільний процес без хаосу.",
-                stat1: "РОЗДІЛИ",
-                stat2: "ДОСТУПНО",
-                stat3: "ДЛЯ ВСІХ",
-                searchPlaceholder: "Пошук правила, бану або покарання...",
+                heroSub: "Звід правил Syndicate RP. Систематичні порушення караються: 1 варн ➔ 2 варн ➔ Бан на 3 дні (або безстроковий бан за найтяжчі проступки).",
+                searchPlaceholder: "Пошук правила, варну або бану...",
                 tabs: {
                     all: "Усі правила",
-                    p1: "1. Ігровий процес",
-                    p2: "2. Регламент поліції",
-                    p3: "3. Регламент медиків",
-                    p4: "4. Суд та Загальні норми"
+                    p1: "1. Базові порушення",
+                    p2: "2. Чат та Голос",
+                    p3: "3. Регламент держ. фракцій",
+                    p4: "4. Кримінал та Зелені зони"
                 },
                 items: [
-                    { cat: "p1", num: "1.1", title: "DM (DeathMatch)", desc: "Вбивство або завдання шкоди без вагомої RP причини.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дні", type: "ban" },
-                    { cat: "p1", num: "1.2", title: "DB (DriveBy)", desc: "Навмисне вбивство або таран транспортом.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дні", type: "ban" },
-                    { cat: "p1", num: "1.3", title: "NonRP Driving / ДТП", desc: "Навмисні аварії, провокації на дорогах, їзда по тротуарах.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дні", type: "ban" },
-                    { cat: "p1", num: "1.4", title: "RK (Revenge Kill)", desc: "Помста або повернення на місце смерті після загибелі.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дні", type: "ban" },
-                    { cat: "p1", num: "1.5", title: "PG (PowerGaming)", desc: "Перебільшення можливостей свого персонажа («супергеройство»).", badge: "1-й раз — Варн | 2-й раз — Бан 3 дні", type: "ban" },
-                    { cat: "p1", num: "1.6", title: "FearRP", desc: "Відсутність страху за життя свого персонажа під загрозою.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дні", type: "ban" },
-                    { cat: "p1", num: "1.7", title: "Образа родини / Рідних", desc: "Будь-які образи родичів у IC або OOC чатах.", badge: "Покарання: Бан до 30 днів", type: "ban" },
-                    { cat: "p1", num: "1.8", title: "Розпалювання конфліктів / OOC в IC", desc: "Перенесення OOC конфліктів у чат гри, образи в OOC.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дні", type: "warn" },
-                    { cat: "p1", num: "1.9", title: "Масовий DM (3+ особи)", desc: "Масове вбивство кількох гравців без причини.", badge: "Бан 7 днів | Повторно — Перманет", type: "ban" },
-                    { cat: "p1", num: "1.10", title: "Багоюз / Ухилення від RP", desc: "Використання багів гри, вихід із сервера під час RP ситуації.", badge: "1-й раз — Бан 1 день | 2-й раз — Бан 3 дні", type: "ban" },
-                    { cat: "p1", num: "1.11", title: "Чити / Софт", desc: "Використання будь-яких сторонніх програм та читів.", badge: "Покарання: Перманентний бан", type: "ban" },
+                    { cat: "p1", num: "1.1", title: "DM (DeathMatch)", desc: "Вбивство або завдання шкоди гравцям без RP причини.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дні", type: "warn" },
+                    { cat: "p1", num: "1.2", title: "DB (DriveBy)", desc: "Навмисне вбивство, шкода або регулярний таран транспортом.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дні", type: "warn" },
+                    { cat: "p1", num: "1.3", title: "NonRP Driving / Таран", desc: "Навмисні аварії, зрізи, їзда по тротуарах та провокації на ТЗ.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дні", type: "warn" },
+                    { cat: "p1", num: "1.4", title: "RK (Revenge Kill)", desc: "Помста або негайне повернення на місце смерті.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дні", type: "warn" },
+                    { cat: "p1", num: "1.5", title: "PG (PowerGaming)", desc: "Перебільшення можливостей свого персонажа («супергеройство»).", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дні", type: "warn" },
+                    { cat: "p1", num: "1.6", title: "FearRP", desc: "Відсутність страху за життя персонажа під дулом зброї.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дні", type: "warn" },
+                    { cat: "p1", num: "1.7", title: "Ухилення від RP / Багоюз", desc: "Вихід із сервера при затриманні/RP або використання багів.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дні", type: "warn" },
+                    { cat: "p1", num: "1.8", title: "Масовий DM (3+ осіб)", desc: "Вбивство або розстріл натовпу без вагомого RP приводу.", badge: "Покарання: Бан від 7 днів", type: "ban" },
+                    { cat: "p1", num: "1.9", title: "Чити та сторонній софт", desc: "Використання софту, що дає перевагу над гравцями.", badge: "Покарання: Перманентний бан", type: "ban" },
 
-                    { cat: "p2", num: "2.1", title: "Правило Міранди", desc: "Обов'язкове зачитування прав під час затримання (використовуйте біндери).", badge: "1-й раз — Варн | 2-й раз — Бан 3 дні", type: "warn" },
-                    { cat: "p2", num: "2.2", title: "Докази (Откат)", desc: "Будь-який арешт вимагає фіксації. За відсутності откату та свідків — Суд виправдовує.", badge: "Виправдання через Суд", type: "warn" },
-                    { cat: "p2", num: "2.3", title: "Застосування спецзасобів", desc: "Тайзер та кийок використовуються чітко при прямій загрозі або опорі.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дні", type: "warn" },
-                    { cat: "p2", num: "2.4", title: "Перевищення повноважень", desc: "Обшук або арешт без законних підстав та причин.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дні", type: "warn" },
-                    { cat: "p2", num: "2.5", title: "Поведінка поліцейського", desc: "Дотримання ввічливості, нейтралітету та презумпції невинуватості. Провокації заборонені.", badge: "Покарання: Варн", type: "warn" },
+                    { cat: "p2", num: "2.1", title: "Образа рідних", desc: "Заборонені будь-які прямі та непрямі згадування рідних.", badge: "Покарання: Бан від 7 до 30 днів", type: "ban" },
+                    { cat: "p2", num: "2.2", title: "OOC в IC / MG (MetaGaming)", desc: "Перенесення інформації з реального світу в ігровий процес.", badge: "1-й Варн ➔ 2-й Варн ➔ Мут 60 хв", type: "warn" },
+                    { cat: "p2", num: "2.3", title: "Розпалювання та Політика", desc: "Провокації, політичні суперечки та нац. розпалювання у чатах.", badge: "Покарання: Бан 7 днів", type: "ban" },
+                    { cat: "p2", num: "2.4", title: "Шуми у Войс / Музика", desc: "Вмикання сторонніх звуків, музики, крики у мікрофон.", badge: "1-й Варн ➔ Мут 30-60 хвилин", type: "warn" },
 
-                    { cat: "p3", num: "3.1", title: "Обов'язок виїзду на виклик", desc: "Медик зобов'язаний оперативно виїжджати на виклики.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дні", type: "warn" },
-                    { cat: "p3", num: "3.2", title: "NonRP Лікування", desc: "Заборонено лікування у стрибку, на бігу або під час перестрілки.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дні", type: "warn" },
-                    { cat: "p3", num: "3.3", title: "Блат та відмова у допомозі", desc: "Упереджене ставлення або відмова від надання допомоги гравцеві.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дні", type: "warn" },
-                    { cat: "p3", num: "3.4", title: "Використання спецсигналів", desc: "Проблискові маячки вмикаються тільки при екстреному виклику.", badge: "1-й раз — Попередження | 2-й — Варн", type: "warn" },
+                    { cat: "p3", num: "3.1", title: "Правило Міранди (Поліція)", desc: "Затримання без зачитання прав затриманому громадянину.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дні", type: "warn" },
+                    { cat: "p3", num: "3.2", title: "Откати арештів (Поліція)", desc: "Арешти вимагають відеофіксації. Немає відео — суд виправдовує.", badge: "Виправдання через Суд", type: "warn" },
+                    { cat: "p3", num: "3.3", title: "Застосування спецзасобів", desc: "Використання тайзера або кийка без опору.", badge: "1-й Варн ➔ 2-й Варн ➔ Догана", type: "warn" },
+                    { cat: "p3", num: "3.4", title: "NonRP Лікування (Медики)", desc: "Лікування на бігу, у бою або без використання медичних відігровок.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дні", type: "warn" },
+                    { cat: "p3", num: "3.5", title: "Блат / Продаж рангів", desc: "Упередженість, продаж посад або інвентарю фракцій.", badge: "Покарання: Бан 30 днів + ЧС", type: "ban" },
 
-                    { cat: "p4", num: "4.1", title: "Відігрування /me, /do, /try", desc: "Обов'язкове використання команд відігрування при викраденні авто та обшуках.", badge: "Покарання: Варн", type: "warn" },
-                    { cat: "p4", num: "4.2", title: "Зелена Зона (GreenZone)", desc: "Заборона будь-якого криміналу в Мерії, лікарнях та відділках.", badge: "1-й раз — Варн | 2-й раз — Бан 3 дні", type: "ban" },
-                    { cat: "p4", num: "4.3", title: "Судовий порядок", desc: "Право на адвоката. Надання свідомо неправдивих свідчень у суді суворо карається.", badge: "Неправдиві свідчення: Бан 7 днів", type: "ban" }
+                    { cat: "p4", num: "4.1", title: "Зелена Зона (GreenZone)", desc: "Заборонені будь-які бійки, стрілянина та грабунки в мерії, лікарні та МВС.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дні", type: "ban" },
+                    { cat: "p4", num: "4.2", title: "Відігрування /me, /do, /try", desc: "Обов'язкове відігрування при обшуках, викрадених авто та грабунках.", badge: "1-й Варн ➔ 2-й Варн ➔ Деморган", type: "warn" },
+                    { cat: "p4", num: "4.3", title: "Грабунки та Викрадення", desc: "Заборонено грабунок без маски або наодинці без фракції.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дні", type: "warn" },
+                    { cat: "p4", num: "4.4", title: "Неправдиві свідчення в Суді", desc: "Обман суду та прокуратури під час офіційних розглядів.", badge: "Покарання: Бан на 7 днів", type: "ban" }
                 ]
             }
         };
@@ -538,9 +568,6 @@
             document.getElementById('lang-subtitle').innerText = data.subtitle;
             document.getElementById('hero-title').innerText = data.heroTitle;
             document.getElementById('hero-sub').innerText = data.heroSub;
-            document.getElementById('stat-1').innerText = data.stat1;
-            document.getElementById('stat-2').innerText = data.stat2;
-            document.getElementById('stat-3').innerText = data.stat3;
             document.getElementById('search-input').placeholder = data.searchPlaceholder;
 
             document.getElementById('tab-all').innerText = data.tabs.all;
@@ -608,7 +635,6 @@
             renderRules();
         }
 
-        // Initial render
         renderRules();
     </script>
 </body>
