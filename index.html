@@ -280,7 +280,6 @@
             color: var(--text-muted);
         }
 
-        /* КЛИКАБЕЛЬНЫЕ КНОПКИ-ВКЛАДКИ СЛЕВА СВЕРХУ */
         .tabs-nav {
             display: flex;
             justify-content: flex-start;
@@ -443,7 +442,7 @@
     <main class="main-content">
         <div class="hero-banner">
             <div class="hero-title" id="hero-title">SYNDICATE RP — ОФИЦИАЛЬНЫЙ СВОД ПРАВИЛ</div>
-            <div class="hero-subtitle" id="hero-sub">Переключайся между вкладками слева: Уголовный Кодекс КПЗ и Общие Правила Сервера.</div>
+            <div class="hero-subtitle" id="hero-sub">Все статьи КПЗ и общие правила сервера в одном месте.</div>
             
             <div class="contact-box">
                 <div class="contact-info">
@@ -458,9 +457,10 @@
             <input type="text" id="search-input" placeholder="Поиск статьи или правила..." oninput="filterRules()">
         </div>
 
-        <!-- КЛИКАБЕЛЬНЫЕ ВКЛАДКИ СЛЕВА СВЕРХУ -->
+        <!-- ВКЛАДКИ -->
         <div class="tabs-nav">
-            <button class="tab-btn active" onclick="switchTab('kpz', this)" id="tab-kpz">⚖️ Уголовный Кодекс КПЗ (3 мин)</button>
+            <button class="tab-btn active" onclick="switchTab('all', this)" id="tab-all">📋 Все правила</button>
+            <button class="tab-btn" onclick="switchTab('kpz', this)" id="tab-kpz">⚖️ Уголовный Кодекс КПЗ (3 мин)</button>
             <button class="tab-btn" onclick="switchTab('general', this)" id="tab-general">📜 Общие Правила Сервера (OOC & Баны)</button>
         </div>
 
@@ -472,9 +472,10 @@
             ru: {
                 subtitle: "УГОЛОВНЫЙ КОДЕКС & ПРАВИЛА",
                 heroTitle: "SYNDICATE RP — ОФИЦИАЛЬНЫЙ СВОД ПРАВИЛ",
-                heroSub: "Переключайся между вкладками слева: Уголовный Кодекс КПЗ и Общие Правила Сервера.",
+                heroSub: "Все статьи КПЗ и общие правила сервера в одном месте.",
                 searchPlaceholder: "Поиск статьи или правила...",
                 tabs: {
+                    all: "📋 Все правила",
                     kpz: "⚖️ Уголовный Кодекс КПЗ (3 мин)",
                     general: "📜 Общие Правила Сервера (OOC & Баны)"
                 },
@@ -499,7 +500,7 @@
                     { cat: "kpz", num: "3.7", icon: "🔴", title: "Статья 3.7 | Дача / Получение взятки", desc: "Попытка откупиться или получение денег сотрудником.", badge: "КПЗ 3 минуты (для сотрудников — увольнение)", type: "warn" },
                     { cat: "kpz", num: "3.8", icon: "🔴", title: "Статья 3.8 | Побег из-под стражи / Из КПЗ", desc: "Скрытие во время конвоирования или системный побег.", badge: "КПЗ 3 минуты (пересад обратно)", type: "warn" },
 
-                    /* ---------------- ОБЩИЕ ПРАВИЛА СЕРВЕРА (OOC & БАНЫ) ---------------- */
+                    /* ---------------- ОБЩИЕ ПРАВИЛА СЕРВЕРА ---------------- */
                     { cat: "general", num: "G1", icon: "🟢", title: "Green Zones (Зеленые Зоны)", desc: "В зеленых зонах запрещено наносить урон, стрелять и грабить игроков.", badge: "Нарушение ➔ Бан 1 день", type: "ban" },
                     { cat: "general", num: "G2", icon: "🟥", title: "PVP Зоны", desc: "На карте расположена ВСЕГО 1 PVP-зона для свободного боя.", badge: "1 PVP Зона", type: "warn" },
                     { cat: "general", num: "O1", icon: "💀", title: "DeathMatch (DM)", desc: "Убийство или нанесение урона без весомой IC причины.", badge: "Деморган 60 мин / Бан 1 день", type: "ban" },
@@ -513,9 +514,10 @@
             ua: {
                 subtitle: "КРИМІНАЛЬНИЙ КОДЕКС & ПРАВИЛА",
                 heroTitle: "SYNDICATE RP — ОФІЦІЙНИЙ СВОД ПРАВИЛ",
-                heroSub: "Перемикайся між вкладками ліворуч: Кримінальний Кодекс КПЗ та Загальні Правила Сервера.",
+                heroSub: "Усі статті КПЗ та загальні правила сервера в одному місці.",
                 searchPlaceholder: "Пошук статті або правила...",
                 tabs: {
+                    all: "📋 Усі правила",
                     kpz: "⚖️ Уголовний Кодекс КПЗ (3 хв)",
                     general: "📜 Загальні Правила Сервера (OOC & Бани)"
                 },
@@ -552,7 +554,7 @@
         };
 
         let currentLang = 'ru';
-        let currentTab = 'kpz';
+        let currentTab = 'all';
 
         function setLang(lang) {
             currentLang = lang;
@@ -565,6 +567,7 @@
             document.getElementById('hero-sub').innerText = data.heroSub;
             document.getElementById('search-input').placeholder = data.searchPlaceholder;
 
+            document.getElementById('tab-all').innerText = data.tabs.all;
             document.getElementById('tab-kpz').innerText = data.tabs.kpz;
             document.getElementById('tab-general').innerText = data.tabs.general;
 
@@ -594,7 +597,7 @@
             container.innerHTML = '';
 
             const filtered = items.filter(item => {
-                const matchTab = (item.cat === currentTab);
+                const matchTab = (currentTab === 'all' || item.cat === currentTab);
                 const matchSearch = item.title.toLowerCase().includes(searchQuery) || 
                                     item.desc.toLowerCase().includes(searchQuery) ||
                                     item.num.toLowerCase().includes(searchQuery) ||
