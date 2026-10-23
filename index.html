@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- OG теги для авто-превью в Telegram -->
     <meta property="og:title" content="Syndicate RP | Официальные правила сервера">
-    <meta property="og:description" content="SYNDICATE RP — Это Честная игра и настоящий RP. Полный свод правил сервера.">
+    <meta property="og:description" content="SYNDICATE RP — Официальный свод правил сервера, регламент КПЗ и админские наказания.">
     <meta property="og:image" content="https://raw.githubusercontent.com/MarkHoroshiy-standoff/syndicate-rp-/main/watermarked_img_15089385054607460645.jpg">
     <meta property="og:type" content="website">
 
@@ -260,60 +259,6 @@
             border: 1px solid rgba(245, 130, 32, 0.3);
         }
 
-        /* Уголовный Кодекс Блок */
-        .uk-section {
-            background: var(--bg-card);
-            border: 1px solid var(--accent-orange);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 20px rgba(245, 130, 32, 0.15);
-        }
-
-        .uk-title {
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: var(--accent-orange);
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .uk-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 10px;
-        }
-
-        .uk-item {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 10px 14px;
-            font-size: 0.83rem;
-        }
-
-        .uk-item-header {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            margin-bottom: 4px;
-            color: var(--text-main);
-        }
-
-        .uk-item-badge {
-            color: var(--badge-warn-text);
-            font-weight: 800;
-            font-size: 0.75rem;
-        }
-
-        .uk-item-desc {
-            color: var(--text-muted);
-            font-size: 0.78rem;
-            line-height: 1.35;
-        }
-
         .search-box {
             position: relative;
             margin-bottom: 18px;
@@ -498,8 +443,8 @@
 
     <main class="main-content">
         <div class="hero-banner">
-            <div class="hero-title" id="hero-title">SYNDICATE RP — ЭТО ЧЕСТНАЯ ИГРА И НАСТОЯЩИЙ RP</div>
-            <div class="hero-subtitle" id="hero-sub">Полный регламент проекта Syndicate RP. Ниже представлен Уголовный Кодекс для арестов и вкладки OOC правил.</div>
+            <div class="hero-title" id="hero-title">SYNDICATE RP — ОФИЦИАЛЬНЫЙ СВОД ПРАВИЛ</div>
+            <div class="hero-subtitle" id="hero-sub">Разделенный регламент: игровые статьи КПЗ (строго 3 мин) и админские баны вынесены в отдельные вкладки.</div>
             
             <div class="contact-box">
                 <div class="contact-info">
@@ -509,149 +454,112 @@
             </div>
         </div>
 
-        <!-- УГОЛОВНЫЙ И АДМИНИСТРАТИВНЫЙ КОДЕКС (СВЕРХУ) -->
-        <div class="uk-section">
-            <div class="uk-title" id="uk-title">⚖️ Уголовный & Административный Кодекс RP (Статьи КПЗ)</div>
-            <div class="uk-grid" id="uk-grid"></div>
-        </div>
-
         <div class="search-box">
             <span class="search-icon">🔍</span>
-            <input type="text" id="search-input" placeholder="Поиск правила или варна..." oninput="filterRules()">
+            <input type="text" id="search-input" placeholder="Поиск статьи КПЗ или бана..." oninput="filterRules()">
         </div>
 
-        <!-- ВКТАДКИ OOC ПРАВИЛ -->
+        <!-- ВКЛАДКИ -->
         <div class="tabs-nav">
-            <button class="tab-btn active" onclick="switchTab('all', this)" id="tab-all">Все OOC правила</button>
-            <button class="tab-btn" onclick="switchTab('p1', this)" id="tab-p1">1. Базовые нарушения</button>
-            <button class="tab-btn" onclick="switchTab('p2', this)" id="tab-p2">2. Чат и Голос</button>
-            <button class="tab-btn" onclick="switchTab('p3', this)" id="tab-p3">3. Правила Гос. Фракций</button>
-            <button class="tab-btn" onclick="switchTab('p4', this)" id="tab-p4">4. Криминал и GreenZone</button>
-            <button class="tab-btn" onclick="switchTab('p5', this)" id="tab-p5">5. Регламент Администрации</button>
+            <button class="tab-btn active" onclick="switchTab('all', this)" id="tab-all">Все правила</button>
+            <button class="tab-btn" onclick="switchTab('kpz', this)" id="tab-kpz">⚖️ Статьи КПЗ (3 мин)</button>
+            <button class="tab-btn" onclick="switchTab('admin', this)" id="tab-admin">🔨 Админские Баны & Наказания</button>
+            <button class="tab-btn" onclick="switchTab('gz', this)" id="tab-gz">🟢 Правила Зеленой Зоны</button>
         </div>
 
         <div class="rules-section" id="rules-container"></div>
     </main>
 
     <script>
-        const ukData = {
-            ru: [
-                { title: "1.1 Нападение на госслужащего", desc: "Стрельба по Полиции, СБУ, КОРД, EMS или Мэрии.", badge: "КПЗ 5 мин + Конфискация" },
-                { title: "1.2 Нападение без оружия / Таран", desc: "Удары кулаками, битой или таран патрулек.", badge: "КПЗ 4 мин" },
-                { title: "1.3 Похищение человека", desc: "Силовое удержание игрока с целью выкупа.", badge: "КПЗ 5 мин" },
-                { title: "1.4 Оскорбление сотрудника", desc: "Хамство и провокации в адрес Полиции, СБУ, КОРД.", badge: "КПЗ 3 мин / Штраф" },
-                { title: "2.1 Неподчинение полиции", desc: "Отказ заглушить двигатель, выйти или показать документы.", badge: "КПЗ 3 мин" },
-                { title: "2.2 Уход от погони", desc: "Игнорирование 3+ требований в мегафон с сиренами.", badge: "КПЗ 4 мин + Изъятие прав" },
-                { title: "2.3 Помеха аресту", desc: "Вмешательство в задержание, попытка отбить преступника.", badge: "КПЗ 4 мин" },
-                { title: "2.4 Закрытая территория", desc: "Нахождение на парковке силовых структур, КПЗ или Мэрии.", badge: "КПЗ 3 мин" },
-                { title: "3.1 Ношение оружия в открытую", desc: "Демонстрация оружия в общественных местах.", badge: "КПЗ 3 мин" },
-                { title: "3.2 Оружие БЕЗ лицензии", desc: "Хранение, сбыт и ношение нелегального огнестрела.", badge: "КПЗ 4-5 мин + Конфискация" },
-                { title: "3.3 Опасная езда / Таран (DB)", desc: "Езда по встречке, тротуарам, намеренные аварии.", badge: "КПЗ 3 мин + Лишение прав" },
-                { title: "3.4 Угон автотранспорта", desc: "Взлом или попытка угона чужого или гос. авто.", badge: "КПЗ 4 мин" }
-            ],
-            ua: [
-                { title: "1.1 Напад на держслужбовця", desc: "Стрілянина по Поліції, СБУ, КОРД, EMS або Мерії.", badge: "КПЗ 5 хв + Конфіскація" },
-                { title: "1.2 Напад без зброї / Таран", desc: "Удари кулаками, битою або таран патрульок.", badge: "КПЗ 4 хв" },
-                { title: "1.3 Викрадення людини", desc: "Силове утримання гравця з метою викупу.", badge: "КПЗ 5 хв" },
-                { title: "1.4 Образа співробітника", desc: "Хамство та провокації на адресу Поліції, СБУ, КОРД.", badge: "КПЗ 3 хв / Штраф" },
-                { title: "2.1 Непокора поліції", desc: "Відмова заглушити двигун, вийти або показати документи.", badge: "КПЗ 3 хв" },
-                { title: "2.2 Ухилення від погоні", desc: "Ігнорування 3+ вимог у мегафон з сиренами.", badge: "КПЗ 4 хв + Вилучення прав" },
-                { title: "2.3 Перешкода арешту", desc: "Втручання у затримання, спроба відбити злочинця.", badge: "КПЗ 4 хв" },
-                { title: "2.4 Закрита територія", desc: "Перебування на парковці силових структур, КПЗ або Мерії.", badge: "КПЗ 3 хв" },
-                { title: "3.1 Носіння зброї у відкриту", desc: "Демонстрація зброї у людних місцях.", badge: "КПЗ 3 хв" },
-                { title: "3.2 Зброя БЕЗ ліцензії", desc: "Зберігання, збут та носіння нелегальної вогнепальної зброї.", badge: "КПЗ 4-5 хв + Конфіскація" },
-                { title: "3.3 Небезпечна їзда / Таран (DB)", desc: "Їзда по зустрічній, тротуарах, навмисні аварії.", badge: "КПЗ 3 хв + Вилучення прав" },
-                { title: "3.4 Викрадення автотранспорту", desc: "Злам або спроба викрадення чужого або держ. авто.", badge: "КПЗ 4 хв" }
-            ]
-        };
-
         const rulesData = {
             ru: {
                 subtitle: "ПРАВИЛА СЕРВЕРА",
-                heroTitle: "SYNDICATE RP — ЭТО ЧЕСТНАЯ ИГРА И НАСТОЯЩИЙ RP",
-                heroSub: "Полный регламент проекта Syndicate RP. Ниже представлен Уголовный Кодекс для арестов и вкладки OOC правил.",
-                searchPlaceholder: "Поиск правила или варна...",
-                ukTitle: "⚖️ Уголовный & Административный Кодекс RP (Статьи КПЗ)",
+                heroTitle: "SYNDICATE RP — ОФИЦИАЛЬНЫЙ СВОД ПРАВИЛ",
+                heroSub: "Разделенный регламент: игровые статьи КПЗ (строго 3 мин) и админские баны вынесены в отдельные вкладки.",
+                searchPlaceholder: "Поиск статьи КПЗ или бана...",
                 tabs: {
-                    all: "Все OOC правила",
-                    p1: "1. Базовые нарушения",
-                    p2: "2. Чат и Голос",
-                    p3: "3. Правила Гос. Фракций",
-                    p4: "4. Криминал и GreenZone",
-                    p5: "5. Регламент Администрации"
+                    all: "Все правила",
+                    kpz: "⚖️ Статьи КПЗ (3 мин)",
+                    admin: "🔨 Админские Баны & Наказания",
+                    gz: "🟢 Правила Зеленой Зоны"
                 },
                 items: [
-                    { cat: "p1", num: "1.1", icon: "💀", title: "DM (DeathMatch)", desc: "Убийство без RP причины.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дня", type: "warn" },
-                    { cat: "p1", num: "1.2", icon: "🚗", title: "DB (DriveBy)", desc: "Намеренный урон или таран транспортом.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дня", type: "warn" },
-                    { cat: "p1", num: "1.3", icon: "🏎️", title: "NonRP Driving", desc: "Езда по горам, срезы, езда по тротуарам.", badge: "1-й Варн ➔ Деморган", type: "warn" },
-                    { cat: "p1", num: "1.4", icon: "🔄", title: "RK (Revenge Kill)", desc: "Месть за смерть или возврат на место гибели до 15 мин.", badge: "1-й Варн ➔ Бан 3 дня", type: "warn" },
-                    { cat: "p1", num: "1.5", icon: "🦸‍♂️", title: "PG (PowerGaming)", desc: "Преувеличение возможностей (1 в 3+, прыжки с высоты).", badge: "1-й Варн ➔ Бан 3 дня", type: "warn" },
-                    { cat: "p1", num: "1.6", icon: "😱", title: "FearRP", desc: "Отсутствие страха за жизнь под дулом оружия.", badge: "1-й Варн ➔ Бан 3 дня", type: "warn" },
-                    { cat: "p1", num: "1.7", icon: "🚪", title: "Уход от RP", desc: "Выход из игры, заплыв в воду или релог при задержании.", badge: "1-й Варн ➔ Бан 3 дня", type: "warn" },
-                    { cat: "p1", num: "1.8", icon: "💻", title: "Читы и Софт", desc: "Использование сторонних программ.", badge: "Перманентный бан (ЧС)", type: "ban" },
+                    /* --- СТАТЬИ КПЗ (ОТДЕЛЬНАЯ ВКЛАДКА) --- */
+                    { cat: "kpz", num: "1.1", icon: "📢", title: "Мелкое хулиганство / Шум / Порча имущества", desc: "Громкие крики, неадекватное поведение или порча публичной собственности.", badge: "Штраф 2,000 / КПЗ 3 мин", type: "warn" },
+                    { cat: "kpz", num: "1.2", icon: "🤬", title: "Оскорбление сотрудника при исполнении", desc: "Оскорбление сотрудника Полиции, СБУ, КОРД, EMS или Мэрии.", badge: "Штраф 3,000 / КПЗ 3 мин", type: "warn" },
+                    { cat: "kpz", num: "1.3", icon: "🔫", title: "Открытое ношение оружия", desc: "Демонстрация ствола в публичном месте. Наказание после отказа убрать.", badge: "КПЗ 3 мин + Изъятие", type: "warn" },
+                    { cat: "kpz", num: "2.1", icon: "🛑", title: "Неподчинение законным требованиям", desc: "Отказ заглушить двигатель, выйти из ТС или показать документы.", badge: "Штраф 4,000 / КПЗ 3 мин", type: "warn" },
+                    { cat: "kpz", num: "2.2", icon: "🚨", title: "Проникновение на закрытую территорию", desc: "Нахождение на парковке СБУ, МВД, Мэрии или в зоне КПЗ.", badge: "КПЗ 3 мин", type: "warn" },
+                    { cat: "kpz", num: "2.3", icon: "🏎️", title: "Уход от погони", desc: "Игнорирование требования остановиться в мегафон во время погони.", badge: "КПЗ 3 мин + Изъятие прав", type: "warn" },
+                    { cat: "kpz", num: "2.4", icon: "👊", title: "Нападение без оружия / Драка с копом", desc: "Удары кулаками, битой или ножом по сотруднику гос. структур.", badge: "КПЗ 3 мин", type: "warn" },
+                    { cat: "kpz", num: "2.5", icon: "🚘", title: "Угон автотранспорта", desc: "Взлом или попытка угона чужого или государственного ТС.", badge: "КПЗ 3 мин", type: "warn" },
+                    { cat: "kpz", num: "3.1", icon: "📦", title: "Хранение / Сбыт нелегала или наркотиков", desc: "Обнаружение запрещенных веществ или стволов без лицензии.", badge: "КПЗ 3 мин + Конфискация", type: "warn" },
+                    { cat: "kpz", num: "3.2", icon: "⛔", title: "Нарушение правил Зелёной Зоны", desc: "Нанесение урона, драки или стрельба в Green Zone.", badge: "Штраф 5,000 + КПЗ 3 мин", type: "warn" },
+                    { cat: "kpz", num: "3.3", icon: "🛡️", title: "Помеха аресту / Отбитие задержанного", desc: "Вмешательство в процессуальные действия и попытка освободить преступника.", badge: "КПЗ 3 мин", type: "warn" },
+                    { cat: "kpz", num: "3.4", icon: "💥", title: "Вооруженное нападение на госслужащего", desc: "Стрельба по сотрудникам Полиции, СБУ, КОРД, EMS или Мэрии.", badge: "КПЗ 3 мин + Изъятие ствола", type: "warn" },
+                    { cat: "kpz", num: "3.5", icon: "👥", title: "Похищение человека / Захват заложников", desc: "Силовое удержание игрока с целью выкупа или выдвижения требований.", badge: "КПЗ 3 мин", type: "warn" },
+                    { cat: "kpz", num: "3.6", icon: "🚜", title: "Намеренный таран / DB (DriveBy)", desc: "Намеренный таран машин или сбивание пешеходов автомобилем.", badge: "Штраф 5,000 + КПЗ 3 мин", type: "warn" },
+                    { cat: "kpz", num: "3.7", icon: "💵", title: "Дача / Получение взятки", desc: "Попытка откупиться или взятие денег сотрудником за отпуск с ареста.", badge: "КПЗ 3 мин (+Увольнение)", type: "warn" },
+                    { cat: "kpz", num: "3.8", icon: "🏃‍♂️", title: "Побег из-под стражи / Из КПЗ", desc: "Скрытие во время конвоирования или системный побег из участка.", badge: "КПЗ 3 мин (Пересад)", type: "warn" },
 
-                    { cat: "p2", num: "2.1", icon: "👨‍👩‍👧", title: "Оскорбление родных", desc: "Любые прямые или косвенные упоминания родителей.", badge: "Наказание: Бан от 7 до 30 дней", type: "ban" },
-                    { cat: "p2", num: "2.2", icon: "📢", title: "MG (MetaGaming)", desc: "Перенос OOC информации в IC чат или войс.", badge: "1-й Варн ➔ Мут 60 мин", type: "warn" },
-                    { cat: "p2", num: "2.3", icon: "🚫", title: "Розжиг и Политика", desc: "Провокации, политические споры и нац. розжиг.", badge: "Бан 7 дней", type: "ban" },
-                    { cat: "p2", num: "2.4", icon: "🎵", title: "Шумы в Войс / Саундпады", desc: "Включение музыки, крики, неисправный микрофон.", badge: "Мут 30-60 мин", type: "warn" },
+                    /* --- АДМИНСКИЕ БАНЫ И НАКАЗАНИЯ (ОТДЕЛЬНАЯ ВКЛАДКА) --- */
+                    { cat: "admin", num: "A1", icon: "💀", title: "DeathMatch (DM)", desc: "Убийство или нанесение урона игроку без весомой IC RP причины.", badge: "Деморган 60 мин / Бан 1 день", type: "ban" },
+                    { cat: "admin", num: "A2", icon: "🚗", title: "DriveBy (DB)", desc: "Убийство с помощью авто или стрельба с водительского места.", badge: "Деморган 40 мин", type: "warn" },
+                    { cat: "admin", num: "A3", icon: "👑", title: "PowerGaming (PG)", desc: "Преувеличение физических возможностей (1 против 3, со стволом на танк).", badge: "Варн / Бан 3 дня", type: "ban" },
+                    { cat: "admin", num: "A4", icon: "🧠", title: "MetaGaming (MG)", desc: "Использование OOC информации (из Дискорда/ТГ) в IC процессе.", badge: "Мут 60 мин", type: "warn" },
+                    { cat: "admin", num: "A5", icon: "🚫", title: "Массовое нарушение в Зелёной Зоне", desc: "Убийство игроков на спавнах, у больницы или МВД.", badge: "Бан 1 - 3 дня", type: "ban" },
+                    { cat: "admin", num: "A6", icon: "💻", title: "Использование ЧИТОВ / Софта / Скриптов", desc: "Любые сторонние программы, дающие преимущество над игроками.", badge: "Пермабан (30-999 дней)", type: "ban" },
+                    { cat: "admin", num: "A7", icon: "🤬", title: "Оскорбление Администрации / Родных", desc: "Оскорбление проекта, админов или упоминание родных в оскорбительном ключе.", badge: "Мут 300 мин / Бан 7 дней", type: "ban" },
 
-                    { cat: "p3", num: "3.1", icon: "📜", title: "Зачитка Миранды", desc: "Обязательный зачит прав при аресте.", badge: "1-й Варн", type: "warn" },
-                    { cat: "p3", num: "3.2", icon: "🛑", title: "FreeArrest", desc: "Арест без причины, статьи или доказательств.", badge: "Варн ➔ Деморган 60 мин", type: "warn" },
-                    { cat: "p3", num: "3.3", icon: "⚡", title: "Tazer / Дубинка в бою", desc: "Использование тайзера против огнестрела.", badge: "Варн ➔ Деморган 40 мин", type: "warn" },
-                    { cat: "p3", num: "3.4", icon: "🏢", title: "Нарушение порядка в Участке", desc: "Стрельба, бег и NonRP в здании/КПЗ.", badge: "Выговор / Варн", type: "warn" },
-                    { cat: "p3", num: "3.5", icon: "💰", title: "Блат и Слив склада", desc: "Продажа рангов или раздача оружия.", badge: "Бан 30 дней + ЧС", type: "ban" },
-
-                    { cat: "p4", num: "4.1", icon: "🟢", title: "Стрельба / Урон в Зеленой Зоне", desc: "Нарушения на Спавне, в Больнице, Мэрии, МВД.", badge: "1-й Варн ➔ Бан 3 дня", type: "ban" },
-                    { cat: "p4", num: "4.2", icon: "🏃‍♂️", title: "Уход в GreenZone от погони", desc: "Забег в ЗЗ во время перестрелки или погони.", badge: "1-й Варн ➔ Деморган 60 мин", type: "warn" },
-                    { cat: "p4", num: "4.3", icon: "🎭", title: "Ограбления без маски / Соло", desc: "Крайм менее чем в 2 человека или без маски.", badge: "1-й Варн ➔ Бан 3 дня", type: "warn" },
-
-                    { cat: "p5", num: "5.1", icon: "👑", title: "Оскорбление / Неуважение к Админу", desc: "Споры, хамство или оскорбления администрации.", badge: "Бан от 1 до 4 дней", type: "ban" },
-                    { cat: "p5", num: "5.2", icon: "🛡️", title: "DM / Помеха работы Админа", desc: "Нанесение урона админу при исполнении.", badge: "Бан на 7 дней", type: "ban" },
-                    { cat: "p5", num: "5.3", icon: "🚁", title: "Превышение полномочий Админа", desc: "Использование Флая (Fly) в личных целях.", badge: "Снятие с поста + ЧС", type: "ban" }
+                    /* --- ЗЕЛЕНЫЕ ЗОНЫ (ОТДЕЛЬНАЯ ВКЛАДКА) --- */
+                    { cat: "gz", num: "G1", icon: "🟢", title: "Карта Зеленых Зон", desc: "Спавны, Больница, Здание Мэрии, Здание МВД/СБУ, Автосалоны, Б/У Рынок, Заправки.", badge: "Зона безопасности", type: "warn" },
+                    { cat: "gz", num: "G2", icon: "🛑", title: "Полный запрет стрельбы и урона", desc: "В Green Zone строго запрещено драться, стрелять и грабить даже при наличии IC причины.", badge: "Бан 1 день", type: "ban" },
+                    { cat: "gz", num: "G3", icon: "🏃‍♂️", title: "Уход в ЗЗ от перестрелки или погони", desc: "Запрещено заходить или заезжать в Зеленую Зону во время активного боя.", badge: "Деморган 60 мин", type: "warn" }
                 ]
             },
             ua: {
                 subtitle: "ПРАВИЛА СЕРВЕРА",
-                heroTitle: "SYNDICATE RP — ЦЕ ЧЕСНА ГРА ТА НАПРАВДУ RP",
-                heroSub: "Повний регламент проєкту Syndicate RP. Нижче представлений Кримінальний Кодекс для арештів та вкладки OOC правил.",
-                searchPlaceholder: "Пошук правила або варну...",
-                ukTitle: "⚖️ Кримінальний & Адміністративний Кодекс RP (Статті КПЗ)",
+                heroTitle: "SYNDICATE RP — ОФІЦІЙНИЙ СВОД ПРАВИЛ",
+                heroSub: "Розділений регламент: ігрові статті КПЗ (суворо 3 хв) та адмінські бани винесені в окремі вкладки.",
+                searchPlaceholder: "Пошук статті КПЗ або бану...",
                 tabs: {
-                    all: "Усі OOC правила",
-                    p1: "1. Базові порушення",
-                    p2: "2. Чат та Голос",
-                    p3: "3. Правила Держ. Фракцій",
-                    p4: "4. Кримінал та GreenZone",
-                    p5: "5. Регламент Адміністрації"
+                    all: "Усі правила",
+                    kpz: "⚖️ Статті КПЗ (3 хв)",
+                    admin: "🔨 Адмінські Бани & Накази",
+                    gz: "🟢 Правила Зеленої Зони"
                 },
                 items: [
-                    { cat: "p1", num: "1.1", icon: "💀", title: "DM (DeathMatch)", desc: "Вбивство без RP причини.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дні", type: "warn" },
-                    { cat: "p1", num: "1.2", icon: "🚗", title: "DB (DriveBy)", desc: "Навмисна шкода або таран транспортом.", badge: "1-й Варн ➔ 2-й Варн ➔ Бан 3 дні", type: "warn" },
-                    { cat: "p1", num: "1.3", icon: "🏎️", title: "NonRP Driving", desc: "Їзда по горах, зрізи, їзда по тротуарах.", badge: "1-й Варн ➔ Деморган", type: "warn" },
-                    { cat: "p1", num: "1.4", icon: "🔄", title: "RK (Revenge Kill)", desc: "Помста за смерть або повернення на місце загибелі до 15 хв.", badge: "1-й Варн ➔ Бан 3 дні", type: "warn" },
-                    { cat: "p1", num: "1.5", icon: "🦸‍♂️", title: "PG (PowerGaming)", desc: "Перебільшення можливостей (1 в 3+, стрибки з висоти).", badge: "1-й Варн ➔ Бан 3 дні", type: "warn" },
-                    { cat: "p1", num: "1.6", icon: "😱", title: "FearRP", desc: "Відсутність страху за життя під дулом зброї.", badge: "1-й Варн ➔ Бан 3 дні", type: "warn" },
-                    { cat: "p1", num: "1.7", icon: "🚪", title: "Ухилення від RP", desc: "Вихід з гри, заплив у воду або релог при затриманні.", badge: "1-й Варн ➔ Бан 3 дні", type: "warn" },
-                    { cat: "p1", num: "1.8", icon: "💻", title: "Чити та Софт", desc: "Використання сторонніх програм.", badge: "Перманентний бан (ЧС)", type: "ban" },
+                    /* --- СТАТТІ КПЗ (UA) --- */
+                    { cat: "kpz", num: "1.1", icon: "📢", title: "Дрібне хуліганство / Шум / Псування майна", desc: "Гучні крики, неадекватна поведінка або псування публічної власності.", badge: "Штраф 2,000 / КПЗ 3 хв", type: "warn" },
+                    { cat: "kpz", num: "1.2", icon: "🤬", title: "Образа співробітника при виконанні", desc: "Образа співробітника Поліції, СБУ, КОРД, EMS або Мерії.", badge: "Штраф 3,000 / КПЗ 3 хв", type: "warn" },
+                    { cat: "kpz", num: "1.3", icon: "🔫", title: "Відкрите носіння зброї", desc: "Demonstration ствола у публічному місці. Наказом після відмови прибрати.", badge: "КПЗ 3 хв + Вилучення", type: "warn" },
+                    { cat: "kpz", num: "2.1", icon: "🛑", title: "Непокора законним вимогам", desc: "Відмова заглушити двигун, вийти з ТЗ або показати документи.", badge: "Штраф 4,000 / КПЗ 3 хв", type: "warn" },
+                    { cat: "kpz", num: "2.2", icon: "🚨", title: "Проникнення на закриту територію", desc: "Перебування на парковці СБУ, МВС, Мерії або у зоні КПЗ.", badge: "КПЗ 3 хв", type: "warn" },
+                    { cat: "kpz", num: "2.3", icon: "🏎️", title: "Втеча від погоні", desc: "Ігнорування вимоги зупинитися у мегафон під час погоні.", badge: "КПЗ 3 хв + Вилучення прав", type: "warn" },
+                    { cat: "kpz", num: "2.4", icon: "👊", title: "Напад без зброї / Бійка з копом", desc: "Удари кулаками, битою або ножем по співробітнику держ. структур.", badge: "КПЗ 3 хв", type: "warn" },
+                    { cat: "kpz", num: "2.5", icon: "🚘", title: "Викрадення автотранспорту", desc: "Злам або спроба викрадення чужого або державного ТЗ.", badge: "КПЗ 3 хв", type: "warn" },
+                    { cat: "kpz", num: "3.1", icon: "📦", title: "Зберігання / Збут нелегалу чи наркотиків", desc: "Виявлення заборонених речовин або стволів без ліцензії.", badge: "КПЗ 3 хв + Конфіскація", type: "warn" },
+                    { cat: "kpz", num: "3.2", icon: "⛔", title: "Порушення правил Зеленої Зони", desc: "Завдання шкоди, бійки або стрілянина у Green Zone.", badge: "Штраф 5,000 + КПЗ 3 хв", type: "warn" },
+                    { cat: "kpz", num: "3.3", icon: "🛡️", title: "Перешкода арешту / Відбиття затриманого", desc: "Втручання у процесуальні дії та спроба звільнити злочинця.", badge: "КПЗ 3 хв", type: "warn" },
+                    { cat: "kpz", num: "3.4", icon: "💥", title: "Збройний напад на держслужбовця", desc: "Стрілянина по співробітниках Поліції, СБУ, КОРД, EMS або Мерії.", badge: "КПЗ 3 хв + Вилучення зброї", type: "warn" },
+                    { cat: "kpz", num: "3.5", icon: "👥", title: "Викрадення людини / Захоплення заручників", desc: "Силове утримання гравця з метою викупу або висування вимог.", badge: "КПЗ 3 хв", type: "warn" },
+                    { cat: "kpz", num: "3.6", icon: "🚜", title: "Навмисний таран / DB (DriveBy)", desc: "Навмисний таран машин або збивання пішоходів автомобілем.", badge: "Штраф 5,000 + КПЗ 3 хв", type: "warn" },
+                    { cat: "kpz", num: "3.7", icon: "💵", title: "Дача / Отримання хабара", desc: "Спроба відкупитися або взяття грошей співробітником за відпуск з арешту.", badge: "КПЗ 3 хв (+Звільнення)", type: "warn" },
+                    { cat: "kpz", num: "3.8", icon: "🏃‍♂️", title: "Втеча з-під варти / З КПЗ", desc: "Сховання під час конвоювання або системна втеча з відділку.", badge: "КПЗ 3 хв (Пересад)", type: "warn" },
 
-                    { cat: "p2", num: "2.1", icon: "👨‍👩‍👧", title: "Образа рідних", desc: "Будь-які прямі або непрямі згадування батьків.", badge: "Покарання: Бан від 7 до 30 днів", type: "ban" },
-                    { cat: "p2", num: "2.2", icon: "📢", title: "MG (MetaGaming)", desc: "Перенесення OOC інформації в IC чат або войс.", badge: "1-й Варн ➔ Мут 60 хв", type: "warn" },
-                    { cat: "p2", num: "2.3", icon: "🚫", title: "Розпалювання та Політика", desc: "Провокації, політичні суперечки та нац. розпалювання.", badge: "Бан 7 днів", type: "ban" },
-                    { cat: "p2", num: "2.4", icon: "🎵", title: "Шуми у Войс / Саундпади", desc: "Вмикання музики, крики, несправний мікрофон.", badge: "Мут 30-60 хв", type: "warn" },
+                    /* --- АДМІНСЬКІ БАНИ (UA) --- */
+                    { cat: "admin", num: "A1", icon: "💀", title: "DeathMatch (DM)", desc: "Вбивство або завдання шкоди гравцеві без вагомої IC RP причини.", badge: "Деморган 60 хв / Бан 1 день", type: "ban" },
+                    { cat: "admin", num: "A2", icon: "🚗", title: "DriveBy (DB)", desc: "Вбивство за допомогою авто або стрілянина з водійського місця.", badge: "Деморган 40 хв", type: "warn" },
+                    { cat: "admin", num: "A3", icon: "👑", title: "PowerGaming (PG)", desc: "Перебільшення фізичних можливостей (1 проти 3, зі стволом на танк).", badge: "Варн / Бан 3 дні", type: "ban" },
+                    { cat: "admin", num: "A4", icon: "🧠", title: "MetaGaming (MG)", desc: "Використання OOC інформації (з Діскорду/ТГ) у IC процесі.", badge: "Мут 60 хв", type: "warn" },
+                    { cat: "admin", num: "A5", icon: "🚫", title: "Масове порушення у Зеленій Зоні", desc: "Вбивство гравців на спавнах, біля лікарні або МВС.", badge: "Бан 1 - 3 дні", type: "ban" },
+                    { cat: "admin", num: "A6", icon: "💻", title: "Використання ЧИТІВ / Софту / Скриптів", desc: "Будь-які сторонні програми, що дають перевагу над гравцями.", badge: "Пермабан (30-999 днів)", type: "ban" },
+                    { cat: "admin", num: "A7", icon: "🤬", title: "Образа Адміністрації / Рідних", desc: "Образа проекту, адмінів або згадування рідних у образливому контексті.", badge: "Мут 300 хв / Бан 7 днів", type: "ban" },
 
-                    { cat: "p3", num: "3.1", icon: "📜", title: "Зачитання Міранди", desc: "Обов'язкове зачитання прав при арешті.", badge: "1-й Варн", type: "warn" },
-                    { cat: "p3", num: "3.2", icon: "🛑", title: "FreeArrest", desc: "Арешт без причини, статті або доказів.", badge: "Варн ➔ Деморган 60 хв", type: "warn" },
-                    { cat: "p3", num: "3.3", icon: "⚡", title: "Tazer / Кийок у бою", desc: "Використання тайзера проти вогнепалу.", badge: "Варн ➔ Деморган 40 хв", type: "warn" },
-                    { cat: "p3", num: "3.4", icon: "🏢", title: "Порушення порядку у Відділку", desc: "Стрілянина, біг та NonRP у будівлі/КПЗ.", badge: "Догана / Варн", type: "warn" },
-                    { cat: "p3", num: "3.5", icon: "💰", title: "Блат та Злив складу", desc: "Продаж рангів або роздача зброї.", badge: "Бан 30 днів + ЧС", type: "ban" },
-
-                    { cat: "p4", num: "4.1", icon: "🟢", title: "Стрілянина / Шкода в Зеленій Зоні", desc: "Порушення на Спавні, у Лікарні, Мерії, МВС.", badge: "1-й Варн ➔ Бан 3 дні", type: "ban" },
-                    { cat: "p4", num: "4.2", icon: "🏃‍♂️", title: "Ухід у GreenZone від погоні", desc: "Забіг у ЗЗ під час перестрілки або погоні.", badge: "1-й Варн ➔ Деморган 60 хв", type: "warn" },
-                    { cat: "p4", num: "4.3", icon: "🎭", title: "Грабунки без маски / Соло", desc: "Крайм менше ніж у 2 особи або без маски.", badge: "1-й Варн ➔ Бан 3 дні", type: "warn" },
-
-                    { cat: "p5", num: "5.1", icon: "👑", title: "Образа / Неповага до Адміна", desc: "Суперечки, хамство або образи адміністрації.", badge: "Бан від 1 до 4 днів", type: "ban" },
-                    { cat: "p5", num: "5.2", icon: "🛡️", title: "DM / Перешкода роботи Адміна", desc: "Завдання шкоди адміну під час виконання.", badge: "Бан на 7 днів", type: "ban" },
-                    { cat: "p5", num: "5.3", icon: "🚁", title: "Перевищення повноважень Адміна", desc: "Використання Флая (Fly) у власних цілях.", badge: "Зняття з посади + ЧС", type: "ban" }
+                    /* --- ЗЕЛЕНІ ЗОНИ (UA) --- */
+                    { cat: "gz", num: "G1", icon: "🟢", title: "Карта Зелених Зон", desc: "Спавни, Лікарня, Будівля Мерії, Будівля МВС/СБУ, Автосалони, Б/У Ринок, Заправки.", badge: "Зона безпеки", type: "warn" },
+                    { cat: "gz", num: "G2", icon: "🛑", title: "Повна заборона стрілянини та шкоди", desc: "У Green Zone суворо заборонено бігати, стріляти та грабувати навіть за наявності IC причини.", badge: "Бан 1 день", type: "ban" },
+                    { cat: "gz", num: "G3", icon: "🏃‍♂️", title: "Втеча у ЗЗ від перестрілки чи погоні", desc: "Заборонено заходити або заїжджати у Зелену Зону під час активного бою.", badge: "Деморган 60 хв", type: "warn" }
                 ]
             }
         };
@@ -669,34 +577,13 @@
             document.getElementById('hero-title').innerText = data.heroTitle;
             document.getElementById('hero-sub').innerText = data.heroSub;
             document.getElementById('search-input').placeholder = data.searchPlaceholder;
-            document.getElementById('uk-title').innerText = data.ukTitle;
 
             document.getElementById('tab-all').innerText = data.tabs.all;
-            document.getElementById('tab-p1').innerText = data.tabs.p1;
-            document.getElementById('tab-p2').innerText = data.tabs.p2;
-            document.getElementById('tab-p3').innerText = data.tabs.p3;
-            document.getElementById('tab-p4').innerText = data.tabs.p4;
-            document.getElementById('tab-p5').innerText = data.tabs.p5;
+            document.getElementById('tab-kpz').innerText = data.tabs.kpz;
+            document.getElementById('tab-admin').innerText = data.tabs.admin;
+            document.getElementById('tab-gz').innerText = data.tabs.gz;
 
-            renderUK();
             renderRules();
-        }
-
-        function renderUK() {
-            const ukGrid = document.getElementById('uk-grid');
-            ukGrid.innerHTML = '';
-            ukData[currentLang].forEach(item => {
-                const el = document.createElement('div');
-                el.className = 'uk-item';
-                el.innerHTML = `
-                    <div class="uk-item-header">
-                        <span>${item.title}</span>
-                        <span class="uk-item-badge">${item.badge}</span>
-                    </div>
-                    <div class="uk-item-desc">${item.desc}</div>
-                `;
-                ukGrid.appendChild(el);
-            });
         }
 
         function switchTab(tab, btn) {
@@ -758,7 +645,6 @@
             renderRules();
         }
 
-        renderUK();
         renderRules();
     </script>
 </body>
